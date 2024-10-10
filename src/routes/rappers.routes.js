@@ -5,9 +5,16 @@ const rappersRoutes = Router()
 let rappers = [
 {
     id: Number(Math.floor(Math.random() * 99) + 1),
-    nome: "Dev",
-    idade: 18,
-    descricao: ["alto", "loiro"],
+    nome: "Eminem",
+    idade: 51,
+    descricao: ["baixo", "moreno", "rapper", "barbudo"],
+    suspeito: "não"
+},
+{
+    id: Number(Math.floor(Math.random() * 99) + 1),
+    nome: "P.diddy",
+    idade: 54,
+    descricao: ["alto", "cabelo baixo", "negro", "sem barba"],
     suspeito: "sim"
 }
 ]
@@ -95,5 +102,26 @@ rappersRoutes.put("/:id", (req, res) => {
         rappers,
     })
 })
+
+// Rota para deleter uma guloseima
+rappersRoutes.delete("/:id", (req, res) => {
+    const { id } = req.params
+
+    let rappers = rappersRoutes.find((song) => 
+        song.id === Number(id)
+    )
+    
+        if (!rappers) {
+        return res.status(404).send({message:"Rapper não encontrado!" })
+    } 
+
+    rappers =  rappersRoutes.filter((song) => song.id !== Number(id) )
+
+    return res.status(200).send({
+        message: "Planeta deletado!",
+        rappers,
+    })
+})
+
 
     export default rappersRoutes
