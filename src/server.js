@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(routes)
 
 app.listen(port, () => {
-console.log(`🧨Servidor a todo vapor!! em http://localhost:${port}`);
+console.log(`🎈Servidor a todo vapor!! em http://localhost:${port}`);
 })
 
 routes.use("/rappers", rappersRoutes)
