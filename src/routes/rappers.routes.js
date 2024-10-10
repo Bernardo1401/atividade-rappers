@@ -69,4 +69,31 @@ rappersRoutes.get("/:id", (req, res) => {
     return res.status(200).send(rappers)
 })
 
+// Rota para editar um rapper
+rappersRoutes.put("/:id", (req, res) => {
+    const { id } = req.params
+
+    
+    const rappers = rappersRoutes.find((song) => 
+        song.id === Number(id)
+    )
+
+    if (!rappers) {
+        return res.status(404).send({message: "Rapper não não encontrado!" })
+    }
+
+    const {nome, idade, descricao, suspeito} = req.body
+    
+
+    rappers.nome = nome
+    rappers.idade = idade
+    rappers.descricao = descricao
+    rappers.suspeito = suspeito
+
+    return res.status(201).send({
+        message: "Rapper atualizado!",
+        rappers,
+    })
+})
+
     export default rappersRoutes
