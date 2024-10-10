@@ -53,4 +53,20 @@ rappersRoutes.post("/", (req, res) => {
 })
     })
 
+        
+// Rota para buscar um rapper especifico pelo id
+rappersRoutes.get("/:id", (req, res) => {
+    const { id } = req.params
+
+    const rappers = rappersRoutes.find((song) => 
+        song.id === Number(id)
+    )
+
+    if (!rappers) {
+        return res.status(404).send({message: "Rapper não encontrado!" })
+    }
+
+    return res.status(200).send(rappers)
+})
+
     export default rappersRoutes
