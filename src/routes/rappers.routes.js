@@ -28,9 +28,9 @@ rappersRoutes.get("/", (req, res) => {
 rappersRoutes.post("/", (req, res) => {
     const { nome, idade, descricao, suspeito} = req.body
 //Validação dos campos nome e idade para efetuação do cadastro
-    if(!nome || !idade) {
+    if(!nome || !idade ||!suspeito) {
         return res.status(400).send({
-            message: "Os campos nome e idade são obrigatórios para o cadastro" 
+            message: "Os campos nome, idade, suspeito são obrigatórios para o cadastro" 
         })
     }
     //Validação se o rapper é suspeito ou não
